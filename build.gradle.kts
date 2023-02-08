@@ -15,7 +15,7 @@ abstract class MyConsumingTask : DefaultTask() {
 
 val myAttribute = Attribute.of("my-attribute", String::class.java)
 
-val producerConfiguration by configurations.creating {
+val consumingConfiguration by configurations.creating {
     isCanBeResolved = true
     isCanBeConsumed = false
     attributes {
@@ -24,9 +24,9 @@ val producerConfiguration by configurations.creating {
 }
 
 dependencies {
-    producerConfiguration("included-build:app")
+    consumingConfiguration("included-build:app")
 }
 
 val myConsumingTask by tasks.registering(MyConsumingTask::class) {
-    someInput.from(producerConfiguration)
+    someInput.from(consumingConfiguration)
 }

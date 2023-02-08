@@ -1,6 +1,6 @@
 val myAttribute = Attribute.of("my-attribute", String::class.java)
 
-val producerConfiguration by configurations.registering {
+val producingConfiguration by configurations.registering {
     isCanBeResolved = false
     isCanBeConsumed = true
     attributes {
@@ -28,5 +28,5 @@ val myProducingTask by tasks.registering(MyProducingTask::class) {
 }
 
 artifacts {
-    add(producerConfiguration.name, myProducingTask)
+    add(producingConfiguration.name, myProducingTask)
 }
